@@ -1,9 +1,9 @@
-# 
+#
 # Script to enable Hybrid Calendar and Hybrid Messaging for all Webex users.
 #
 
 # API Bearer Token for Authentication
-$webex_access_token = Read-Host -Prompt "Go to https://developer.webex.com/docs/api/getting-started and get your personal access token, then paste it here:" 
+$webex_access_token = Read-Host -Prompt "Go to https://developer.webex.com/docs/api/getting-started and get your personal access token, then paste it here:"
 
 # Get Licenses
 $webex_license_uri = "https://webexapis.com/v1/licenses"
@@ -25,7 +25,7 @@ foreach ($license in $webex_license_json.items) {
 }
 
 # Get User Details
-$webex_user_uri = "https://webexapis.com/v1/people"
+$webex_user_uri = "https://webexapis.com/v1/people?max=1000"
 
 $user_parameters = @{
   Uri = $webex_user_uri
@@ -36,7 +36,7 @@ $user_parameters = @{
 $user_json = Invoke-RestMethod @user_parameters
 
 foreach ($user in $user_json.items) {
-	if ($user.loginenabled) { 
+	if ($user.loginenabled) {
 		echo "----------------"
 		echo $user.displayName
 		echo $user.emails
@@ -69,8 +69,7 @@ foreach ($user in $user_json.items) {
 				}
 			}
 			Invoke-RestMethod @put_parameters
-			
+
 		}
 	}
 }
-
