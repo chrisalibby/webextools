@@ -89,10 +89,10 @@ To make the script easier to run, you can create an alias in your shell configur
 
 ### For zsh (macOS default)
 
-Add this line to your `~/.zshrc` file:
+Add this line to your `~/.zshrc` file (replace `/path/to/` with your actual path):
 
 ```bash
-alias webexpost='python3 /Users/clibby/Projects/webextools/WebexPoster/webex_daily_post.py'
+alias webexpost='python3 /path/to/WebexPoster/webex_daily_post.py'
 ```
 
 Then reload your configuration:
@@ -103,10 +103,10 @@ source ~/.zshrc
 
 ### For bash
 
-Add this line to your `~/.bashrc` (Linux) or `~/.bash_profile` (macOS):
+Add this line to your `~/.bashrc` (Linux) or `~/.bash_profile` (macOS) (replace `/path/to/` with your actual path):
 
 ```bash
-alias webexpost='python3 /Users/clibby/Projects/webextools/WebexPoster/webex_daily_post.py'
+alias webexpost='python3 /path/to/WebexPoster/webex_daily_post.py'
 ```
 
 Then reload your configuration:
@@ -186,16 +186,16 @@ Edit your crontab:
 crontab -e
 ```
 
-Add a line to run every weekday at 9 AM:
+Add a line to run every weekday at 9 AM (replace `/path/to/WebexPoster` with your actual path):
 
 ```cron
-0 9 * * 1-5 cd /Users/clibby/Projects/mytools && /usr/bin/python3 webex_daily_post.py YOUR_ROOM_ID "<@all> Good morning team! Today is {day}, {date_long}. Have a great day!" >> /tmp/webex_daily_post.log 2>&1
+0 9 * * 1-5 cd /path/to/WebexPoster && /usr/bin/python3 webex_daily_post.py YOUR_ROOM_ID "<@all> Good morning team! Today is {day}, {date_long}. Have a great day!" >> /tmp/webex_daily_post.log 2>&1
 ```
 
 To run every day at 9 AM:
 
 ```cron
-0 9 * * * cd /Users/clibby/Projects/mytools && /usr/bin/python3 webex_daily_post.py YOUR_ROOM_ID "<@all> Good morning! Happy {day}!" >> /tmp/webex_daily_post.log 2>&1
+0 9 * * * cd /path/to/WebexPoster && /usr/bin/python3 webex_daily_post.py YOUR_ROOM_ID "<@all> Good morning! Happy {day}!" >> /tmp/webex_daily_post.log 2>&1
 ```
 
 ### Windows (Task Scheduler)
@@ -206,7 +206,7 @@ To run every day at 9 AM:
 4. Action: "Start a program"
    - Program: `python3` (or `python` or full path like `C:\Python39\python.exe`)
    - Arguments: `webex_daily_post.py ROOM_ID "<@all> Your message here"`
-   - Start in: `C:\Users\YourName\Projects\mytools`
+   - Start in: `C:\path\to\WebexPoster`
 
 ## Troubleshooting
 
