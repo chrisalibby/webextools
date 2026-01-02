@@ -80,15 +80,24 @@ class OAuthCallbackHandler(BaseHTTPRequestHandler):
 
 def setup_webex_oauth(client_id: str, client_secret: str, redirect_uri: str = "http://localhost:8080/callback") -> bool:
     """Perform OAuth authorization flow for Webex CDR access."""
-    global auth_code
+    global auth_code, auth_state, callback_event
 
-    # Construct authorization URL with analytics:read_all scope
+    # Reset global state for fresh OAuth flow
+    auth_code = None
+    auth_state = None
+    callback_event.clear()
+
+    # Construct authorization URL with required scopes
+    # Note: spark-admin:people_read is required for basic API access (admin scope)
+    # spark-admin:calling_cdr_read is required for CDR access
+    # analytics:read_all provides access to analytics APIs
+    scopes = "spark-admin:people_read spark-admin:calling_cdr_read analytics:read_all"
     auth_url = (
         f"https://webexapis.com/v1/authorize?"
         f"client_id={client_id}&"
         f"response_type=code&"
         f"redirect_uri={redirect_uri}&"
-        f"scope=analytics:read_all&"
+        f"scope={scopes}&"
         f"state=webex_cdr_setup"
     )
 
@@ -186,8 +195,9 @@ def main():
 Setup Steps:
 1. Create a Webex Integration at https://developer.webex.com/my-apps
    - Set Redirect URI to: http://localhost:8080/callback
-   - Add scope: analytics:read_all
+   - Add scopes: spark-admin:people_read, spark-admin:calling_cdr_read, analytics:read_all
    - Copy your Client ID and Client Secret
+   - NOTE: You must be a Webex admin to authorize admin scopes
 
 2. Prepare SQL Server credentials
    - Server hostname/IP

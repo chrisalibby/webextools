@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c:*)",
+      "Bash(python:*)",
+      "Bash(powershell -ExecutionPolicy Bypass -File setup_task_scheduler.ps1)"
+    ]
+  }
+}

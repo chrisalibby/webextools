@@ -62,7 +62,7 @@ BEGIN
 
         -- Call Features
         answered BIT,
-        answer_indicator NVARCHAR(10),
+        answer_indicator NVARCHAR(50),  -- Increased from 10 to accommodate 'Yes-PostRedirect'
         redirecting_number NVARCHAR(50),
         redirect_reason NVARCHAR(100),
 
