@@ -270,10 +270,42 @@ Today's focus:
 Let's do this!"
 ```
 
+## Status Management
+
+### View Your Current Status
+
+```bash
+python3 webex_status.py show
+```
+
+This displays your current Webex presence (active, inactive, call, meeting, etc.) and any custom status message.
+
+### Set a Custom Status Message
+
+```bash
+python3 webex_status.py message "In a meeting until 3pm"
+python3 webex_status.py message "Working from home today"
+```
+
+### Clear Your Status Message
+
+```bash
+python3 webex_status.py clear
+```
+
+### Important Limitation
+
+**The Webex API does not support programmatically setting presence states** (active, busy, DND, away). You can only:
+- View your current presence status (read-only)
+- Set/clear custom status messages
+
+To change your presence to busy, DND, or away, you must use the Webex app directly.
+
 ## Files
 
 - `webex_setup.py` - One-time OAuth setup script
 - `webex_daily_post.py` - Main script to post messages
+- `webex_status.py` - Script to view and manage your status
 - `requirements_webex.txt` - Python dependencies
 - `README.md` - This file
 

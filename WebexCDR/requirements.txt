@@ -1,0 +1,14 @@
+# Webex CDR Downloader Dependencies
+# Python 3.7+ required
+
+# HTTP client for API calls
+requests>=2.31.0
+
+# Cross-platform credential storage (macOS Keychain, Windows Credential Manager, Linux Secret Service)
+keyring>=24.0.0
+
+# SQL Server ODBC driver for Python
+pyodbc>=5.3.0
+
+# Enhanced date/time handling
+python-dateutil>=2.8.2
